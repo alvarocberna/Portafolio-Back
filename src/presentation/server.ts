@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import cors from 'cors';
+import { EmailService } from './email/email.service';
 
 interface Options {
     port: number | string;
@@ -23,11 +24,12 @@ export class Server {
 
     async start() {
 
+
         this.app.use(cors());
 
         this.app.use(express.json());
 
-        // this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(express.urlencoded({ extended: true }));
 
         this.app.use(express.static(this.publicPath));
 
